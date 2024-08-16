@@ -1,0 +1,98 @@
+README.mdhttps://github.com/Bastian8195/elPatocua-.gitdocument.addEventListener("DOMContentLoaded", () => {
+    const playerHealthEl = document.getElementById("playerHealth");
+    const enemyHealthEl = document.getElementById("enemyHealth");
+    const attackBtn = document.getElementById("attackBtn");
+
+    let playerHealth = 100;
+    let enemyHealth = 100;
+
+    attackBtn.addEventListener("click", () => {
+        const playerDamage = Math.floor(Math.random() * 10) + 1;
+        const enemyDamage = Math.floor(Math.random() * 10) + 1;
+
+        enemyHealth -= playerDamage;
+        playerHealth -= enemyDamage;
+
+        if (enemyHealth <= 0) {
+            enemyHealth = 0;
+            alert("¡Has ganado!");
+        }
+
+        if (playerHealth <= 0) {
+            playerHealth = 0;
+            alert("¡Has perdido!");
+        }
+
+        playerHealthEl.textContent = playerHealth;
+        enemyHealthEl.textContent = enemyHealth;
+    });
+});playerHealthEl.textContentenemyHealthEl.textContentbody {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 2px solid #000;
+    overflow: hidden;
+}
+
+#player, #enemy {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+
+#player {
+    bottom: 20px;
+    left: 20px;
+}
+
+#enemy {
+    top: 20px;
+    right: 20px;
+    background-color: blue;
+}
+
+#attackBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 80px;
+}
+
+#status {
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+    color: #000;
+}<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Aventura</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game">
+        <div id="player"></div>
+        <div id="enemy"></div>
+        <button id="attackBtn">Atacar</button>
+        <div id="status">
+            <p>Vida del Jugador: <span id="playerHealth">100</span></p>
+            <p>Vida del Enemigo: <span id="enemyHealth">100</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
